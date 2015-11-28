@@ -59,7 +59,7 @@ class TestStaticgenPublisher(TestCase):
         publisher_client = self.publisher.get_client()
         self.assertIsInstance(publisher_client, Client)
 
-        response = publisher_client.get('/redirect')  # page redirects to homepage
+        response = publisher_client.get(reverse('redirect_home'))  # page redirects to homepage
         domain = 'http://{domain}'.format(domain=bucket.get_website_endpoint())
         # check redirect url uses bucket endpoint rather than 'http://testserver'
         self.assertTrue(response.url.startswith(domain))
