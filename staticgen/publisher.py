@@ -44,10 +44,7 @@ class StaticgenPublisher(object):
     def get_client(self):
         if self.client is None:
             bucket = self.get_bucket()
-            self.client = Client(
-                SERVER_NAME=bucket.get_website_endpoint(),
-                HTTP_X_STATICGEN_PUBLISHER=True,
-            )
+            self.client = Client(SERVER_NAME=bucket.get_website_endpoint())
         return self.client
 
     def get_page(self, path):
