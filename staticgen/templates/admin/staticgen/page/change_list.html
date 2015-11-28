@@ -1,0 +1,36 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls admin_static admin_list %}
+
+{% block object-tools %}
+    <ul class="object-tools">
+      {% block object-tools-items %}
+        {% url cl.opts|admin_urlname:'publisher' as publisher_url %}
+        <li>
+            <a href="{{ publisher_url }}?action=sync" title="{% trans 'Sync all registered pages' %}">{% trans 'Sync Pages' %}</a>
+        </li>
+        <li>
+            <a href="{{ publisher_url }}?action=pending" title="{% trans 'Publish pending (unpublished) pages' %}">{% trans 'Publish Pending' %}</a>
+        </li>
+        <li>
+            <a href="{{ publisher_url }}?action=changed" title="{% trans 'Publish all pages marked as changed' %}">{% trans 'Publish Changed' %}</a>
+        </li>
+        <li>
+            <a href="{{ publisher_url }}?action=all" title="{% trans 'Publish/update all registered pages.' %}">{% trans 'Publish All' %}</a>
+        </li>
+        <li>
+          {% url cl.opts|admin_urlname:'publish_history' as publish_history_url %}
+          <a href="{{ publish_history_url }}" class="historylink" title="{% trans 'View Publish History' %}">
+            {% trans 'Publish History' %}
+          </a>
+        </li>
+        {% if has_add_permission %}
+            <li>
+              {% url cl.opts|admin_urlname:'add' as add_url %}
+              <a href="{% add_preserved_filters add_url is_popup to_field %}" class="addlink" title="{% trans 'Add a page manually' %}">
+                {% trans 'Add Page' %}
+              </a>
+            </li>
+        {% endif %}
+      {% endblock %}
+    </ul>
+{% endblock %}

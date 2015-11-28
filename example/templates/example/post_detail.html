@@ -1,0 +1,10 @@
+{% extends "example/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h2>{{ post.title }}</h2>
+<p>{{ post.created|date:"M d, Y" }}</p>
+<div class="article">
+    {{ post.body|safe}}
+</div>
+{% endblock content %}

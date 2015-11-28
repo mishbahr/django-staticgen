@@ -1,0 +1,9 @@
+{% extends "example/base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <h2>{% trans 'Hello :-)' %}</h2>
+    <p>
+        {% trans 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed iaculis elit, eu tincidunt nibh. Curabitur mollis rutrum orci, non sodales leo ullamcorper ac. Nulla fermentum condimentum ante ut iaculis. Fusce sed ipsum at quam commodo facilisis. Fusce non tempor lacus. Maecenas tristique, erat laoreet ullamcorper finibus, est felis vestibulum nisl, eu posuere diam tortor in elit. Aenean magna velit, maximus at ligula id, sollicitudin tincidunt nibh. Ut lacinia eleifend purus, nec condimentum mi consequat et. Donec sodales eget mauris eu molestie. In ultricies eros vitae commodo suscipit. In hac habitasse platea dictumst.' %}
+    </p>
+{% endblock content %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>{% load i18n %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% trans 'django-staticgen' %}</title>
+    <style>
+        ol, ul {
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="site-title">Staticgen</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'homepage' %}">{% trans 'Home' %}</a></li>
+            <li><a href="{% url 'post_list' %}">{% trans 'Blog' %}</a></li>
+        </ul>
+    </nav>
+{% block content %}
+{% endblock content %}
+</body>
+</html>

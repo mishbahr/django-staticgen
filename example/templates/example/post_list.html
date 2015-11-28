@@ -1,0 +1,17 @@
+{% extends "example/base.html" %}
+{% load i18n %}
+
+{% block content %}
+<ul>
+{% for post in post_list %}
+    <li>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.created|date:"M d, Y" }}</p>
+        <p>
+            {{ post.body|safe|truncatewords:10 }}
+        </p>
+        <a href="{{ post.get_absolute_url }}">{% trans 'Read More...' %}</a>
+    </li>
+{% endfor %}
+</ul>
+{% endblock content %}
