@@ -20,7 +20,7 @@ class Command(BaseCommand):
         publisher = StaticgenPublisher()
         publisher.publish(sync=True)
 
-        verbosity = options.get('verbosity')
+        verbosity = int(options.get('verbosity'))
         if verbosity >= 1:
             elapsed_time = time.time() - start_time
             message = _('Completed publishing request successfully, '

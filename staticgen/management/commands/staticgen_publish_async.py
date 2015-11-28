@@ -15,7 +15,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         publish_pages.delay()
 
-        verbosity = options.get('verbosity')
+        verbosity = int(options.get('verbosity'))
         if verbosity >= 1:
             message = _('Your publishing request is processing in the background via Celery')
             self.stdout.write(message)
