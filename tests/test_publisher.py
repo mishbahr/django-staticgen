@@ -54,17 +54,9 @@ class TestStaticgenPublisher(TestCase):
         # setUp
         connection = connect_s3()
         connection.create_bucket(settings.AWS_STORAGE_BUCKET_NAME)
-        bucket = connection.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
 
         publisher_client = self.publisher.get_client()
         self.assertIsInstance(publisher_client, Client)
-
-        response = publisher_client.get(reverse('redirect_home'))  # page redirects to homepage
-        domain = 'http://{domain}'.format(domain=bucket.get_website_endpoint())
-        # check redirect url uses bucket endpoint rather than 'http://testserver'
-        print domain
-        print response['Location']
-        self.assertTrue(response.url.startswith(domain))
 
     @mock_s3
     def test_custom_header(self):
