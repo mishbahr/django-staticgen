@@ -62,7 +62,7 @@ class TestStaticgenPublisher(TestCase):
         response = publisher_client.get(reverse('redirect_home'))  # page redirects to homepage
         domain = 'http://{domain}'.format(domain=bucket.get_website_endpoint())
         # check redirect url uses bucket endpoint rather than 'http://testserver'
-        print domain
+        print domain, response.url
         self.assertTrue(response.url.startswith(domain))
 
     @mock_s3
