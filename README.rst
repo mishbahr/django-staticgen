@@ -58,8 +58,6 @@ Quickstart
 
     python manage.py migrate
 
-4. ``django-staticgen`` requires celery>=3.1 to be installed and configured correctly.
+4. ``django-staticgen`` requires celery>=3.1 to be installed and configured correctly. For more information on using Celery with Django::
 
-For more information on using Celery with Django, see:
-
-http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
+    http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
