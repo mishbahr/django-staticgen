@@ -49,21 +49,12 @@ class TestStaticgenPublisher(TestCase):
 
         self.publisher = StaticgenPublisher()
 
-    @mock_s3
     def test_get_client(self):
-        # setUp
-        connection = connect_s3()
-        connection.create_bucket(settings.AWS_STORAGE_BUCKET_NAME)
-
         publisher_client = self.publisher.get_client()
         self.assertIsInstance(publisher_client, Client)
 
     @mock_s3
     def test_custom_header(self):
-        # setUp
-        connection = connect_s3()
-        connection.create_bucket(settings.AWS_STORAGE_BUCKET_NAME)
-
         response = self.publisher.get_page('/')
         self.assertTrue('HTTP_X_STATICGEN_PUBLISHER' in response.request.keys())
 

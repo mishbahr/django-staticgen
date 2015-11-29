@@ -13,6 +13,7 @@ from django.utils.translation import ugettext_lazy as _
 from boto import connect_s3
 
 from .conf import settings
+from .helpers import get_static_site_domain
 from .models import LogEntry, Page
 from .signals import publishing_complete
 from .status import is_redirect, is_success
@@ -46,8 +47,7 @@ class StaticgenPublisher(object):
 
     def get_client(self):
         if self.client is None:
-            bucket = self.get_bucket()
-            self.client = Client(SERVER_NAME=bucket.get_website_endpoint())
+            self.client = Client(SERVER_NAME=get_static_site_domain())
         return self.client
 
     def get_page(self, path):

@@ -4,15 +4,14 @@ from __future__ import unicode_literals
 
 import logging
 
-from django.core.urlresolvers import NoReverseMatch, resolve, reverse
+from django.core.urlresolvers import resolve, reverse
 from django.shortcuts import resolve_url
 from django.test import Client
-from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 
 from .conf import settings
 from .exceptions import StaticgenError
-from .staticgen_pool import staticgen_pool
+from .helpers import get_static_site_domain
 from .status import HTTP_200_OK
 
 logger = logging.getLogger('staticgen')
@@ -23,7 +22,7 @@ class StaticgenView(object):
 
     def __init__(self, *args, **kwargs):
         super(StaticgenView, self).__init__(*args, **kwargs)
-        self.client = Client()
+        self.client = Client(SERVER_NAME=get_static_site_domain())
 
     def items(self):
         return []
