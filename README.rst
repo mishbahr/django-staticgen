@@ -22,12 +22,21 @@ django-staticgen
 
 Simple static site generator for django. Inspired by django-bakery.
 
+**WORK IN PROGRESS // NOT PRODUCTION READY.**
 
-Demo: https://staticgen-demo.herokuapp.com
+
+Demo
+----
+
+Live Site: https://staticgen-demo.herokuapp.com
+
+Static Site: http://staticgen-demo.s3-website-us-west-2.amazonaws.com
 
 Admin: https://staticgen-demo.herokuapp.com/manage
 
 Message me on Twitter `@mishbahrazzaque <https://twitter.com/mishbahrazzaque>`_ for login details.
+
+Source code for demo: https://github.com/mishbahr/staticgen-demo
 
 
 Quickstart
