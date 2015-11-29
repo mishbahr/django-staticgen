@@ -8,6 +8,7 @@ import time
 from multiprocessing.pool import ThreadPool
 
 from django.test import Client
+from django.utils.encoding import force_str
 from django.utils.translation import ugettext_lazy as _
 
 from boto import connect_s3
@@ -21,7 +22,7 @@ from .status import is_redirect, is_success
 try:
     try:
         from cStringIO import StringIO  # cStringIO is faster
-    except ImportError:
+    except ImportError:  # pragma: no cover
         from StringIO import StringIO
 except ImportError:  # python 3
     from io import StringIO
@@ -197,8 +198,9 @@ class StaticgenPublisher(object):
 
     def handle_page_upload(self, page, response, key):
         has_changed = False
+        content = force_str(response.content)
 
-        temp_file = StringIO(response.content)
+        temp_file = StringIO(content)
         local_md5, b64 = key.compute_md5(temp_file)
 
         etag = key.etag or ''  # If key is new, there's no etag yet
