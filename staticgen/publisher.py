@@ -18,13 +18,11 @@ from .signals import publishing_complete
 from .status import is_redirect, is_success
 
 try:
-    import cStringIO
-except ImportError:  # # pragma: no cover
-    from io import StringIO as cStringIO
-
-try:
-    from StringIO import StringIO
-except ImportError:  # pragma: no cover
+    try:
+        from cStringIO import StringIO  # cStringIO is faster
+    except ImportError:
+        from StringIO import StringIO
+except ImportError:  # python 3
     from io import StringIO
 
 try:
