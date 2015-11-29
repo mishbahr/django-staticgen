@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
-
-import staticgen.models
+from django.db import models, migrations
 
 
 class Migration(migrations.Migration):
@@ -25,9 +23,7 @@ class Migration(migrations.Migration):
                 'verbose_name': 'log entry',
                 'verbose_name_plural': 'log entries',
             },
-            managers=[
-                ('objects', staticgen.models.LogEntryManager()),
-            ],
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Page',
@@ -43,22 +39,22 @@ class Migration(migrations.Migration):
                 'verbose_name': 'page',
                 'verbose_name_plural': 'pages',
             },
-            managers=[
-                ('objects', staticgen.models.PageManager()),
-            ],
+            bases=(models.Model,),
+        ),
+        migrations.AlterUniqueTogether(
+            name='page',
+            unique_together=set([('site', 'path')]),
         ),
         migrations.AddField(
             model_name='logentry',
             name='page',
             field=models.ForeignKey(blank=True, to='staticgen.Page', null=True),
+            preserve_default=True,
         ),
         migrations.AddField(
             model_name='logentry',
             name='site',
             field=models.ForeignKey(verbose_name='Site', to='sites.Site'),
-        ),
-        migrations.AlterUniqueTogether(
-            name='page',
-            unique_together=set([('site', 'path')]),
+            preserve_default=True,
         ),
     ]
