@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 
-from staticgen.models import LogEntryManager, PageManager
+import staticgen.models
 
 
 class Migration(migrations.Migration):
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'log entries',
             },
             managers=[
-                ('objects', LogEntryManager()),
+                ('objects', staticgen.models.LogEntryManager()),
             ],
         ),
         migrations.CreateModel(
@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'pages',
             },
             managers=[
-                ('objects', PageManager()),
+                ('objects', staticgen.models.PageManager()),
             ],
         ),
         migrations.AddField(

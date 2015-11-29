@@ -18,9 +18,9 @@ from .signals import publishing_complete
 from .status import is_redirect, is_success
 
 try:
-    import cStringIO
+    from StringIO import StringIO
 except ImportError:  # pragma: no cover
-    from io import StringIO as cStringIO
+    from io import StringIO
 
 try:
     from urllib.parse import urlparse
@@ -195,7 +195,7 @@ class StaticgenPublisher(object):
     def handle_page_upload(self, page, response, key):
         has_changed = False
 
-        temp_file = cStringIO.StringIO(response.content)
+        temp_file = StringIO(response.content)
         local_md5, b64 = key.compute_md5(temp_file)
 
         etag = key.etag or ''  # If key is new, there's no etag yet
