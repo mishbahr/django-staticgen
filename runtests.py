@@ -50,6 +50,7 @@ try:
         MEDIA_URL='https://staticgen-bucket.s3.amazonaws.com/media/',
         CELERY_ALWAYS_EAGER=True,
         STATICGEN_MULTITHREAD=False,
+        STATICGEN_STATIC_SITE_DOMAIN='example.com',
     )
 
     try:

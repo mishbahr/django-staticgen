@@ -11,6 +11,7 @@ class StaticgenConf(AppConf):
     FAIL_SILENTLY = True
     MULTITHREAD = True
     BUCKET_NAME = getattr(settings, 'AWS_STORAGE_BUCKET_NAME', '')
+    STATIC_SITE_DOMAIN = None
 
     class Meta:
         prefix = 'staticgen'
