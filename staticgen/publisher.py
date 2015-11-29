@@ -18,13 +18,15 @@ from .signals import publishing_complete
 from .status import is_redirect, is_success
 
 try:
-    try:
-        from cStringIO import StringIO
-    except ImportError:
-        from StringIO import StringIO
-except ImportError:
+    import cStringIO
+except ImportError:  # # pragma: no cover
+    from io import StringIO as cStringIO
+
+try:
+    from StringIO import StringIO
+except ImportError:  # pragma: no cover
     from io import StringIO
-    
+
 try:
     from urllib.parse import urlparse
 except ImportError:  # pragma: no cover
