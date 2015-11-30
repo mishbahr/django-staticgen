@@ -44,7 +44,7 @@ class StaticgenView(object):
 
     def _get_paginator(self, url):
         response = self.client.get(url)
-        if not response.status_code == HTTP_200_OK:
+        if not response.status_code == HTTP_200_OK:  # pragma: no cover
             message = _('Error retrieving: {url} - Code: {code}').format(
                 url=url, code=response.status_code)
             self.log_error(message)
@@ -53,7 +53,7 @@ class StaticgenView(object):
             if context_data:
                 try:
                     return context_data['paginator'], context_data['is_paginated']
-                except KeyError:
+                except KeyError:  # pragma: no cover
                     pass
         return None, False
 
