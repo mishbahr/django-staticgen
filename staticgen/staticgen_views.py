@@ -36,6 +36,12 @@ class StaticgenView(object):
     def url(self, item):
         return resolve_url(item)
 
+    def _get_context_data(self, response):
+        for key in ('context', 'context_data',):
+            context = getattr(response, key, None)
+            if context:
+                return context
+
     def _get_paginator(self, url):
         response = self.client.get(url)
         if not response.status_code == HTTP_200_OK:
@@ -43,10 +49,12 @@ class StaticgenView(object):
                 url=url, code=response.status_code)
             self.log_error(message)
         else:
-            try:
-                return response.context['paginator'], response.context['is_paginated']
-            except KeyError:
-                pass
+            context_data = self._get_context_data(response)
+            if context_data:
+                try:
+                    return context_data['paginator'], context_data['is_paginated']
+                except KeyError:
+                    pass
         return None, False
 
     def _urls(self, page):
