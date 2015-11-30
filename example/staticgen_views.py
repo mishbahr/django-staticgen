@@ -15,7 +15,7 @@ class ExampleStaticView(StaticgenView):
             'homepage',
             'error_page',
             'redirect_home',
-            'sitemaps',
+            'django.contrib.sitemaps.views.sitemap',
         )
 
 

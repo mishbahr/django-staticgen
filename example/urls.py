@@ -21,7 +21,8 @@ sitemaps = {
 urlpatterns = patterns(
     '',
     url(r'^sitemap\.xml$', sitemap,
-        {'sitemaps': override_sitemaps_domain(sitemaps)}, name='sitemaps'),
+        {'sitemaps': override_sitemaps_domain(sitemaps)},
+        name='django.contrib.sitemaps.views.sitemap'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', IndexView.as_view(), name='homepage'),
     url(r'^error\.html$', ErrorView.as_view(), name='error_page'),
