@@ -7,6 +7,7 @@ import logging
 from django.core.urlresolvers import resolve, reverse
 from django.shortcuts import resolve_url
 from django.test import Client
+from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 
 from .conf import settings
@@ -48,22 +49,37 @@ class StaticgenView(object):
                 pass
         return None, False
 
+    def _urls(self, page):
+        urls = []
+
+        url = self.url(page)
+        urls.append(url)  # first page
+
+        if self.is_paginated:
+            paginator, is_paginated = self._get_paginator(url)
+            if paginator is not None and is_paginated:
+                page_range = paginator.page_range
+                match = resolve(url)
+                for page_num in page_range:
+                    kwargs = match.kwargs.copy()
+                    kwargs.update({
+                        'page': page_num
+                    })
+                    urls.append(reverse(match.view_name, args=match.args, kwargs=kwargs))
+
+        return urls
+
     def get_urls(self):
         urls = []
-        for item in self.items():
-            url = self.url(item)
-            urls.append(url)  # first page
-            if self.is_paginated:
-                paginator, is_paginated = self._get_paginator(url)
-                if paginator is not None and is_paginated:
-                    page_range = paginator.page_range
-                    match = resolve(url)
-                    for page_num in page_range:
-                        kwargs = match.kwargs.copy()
-                        kwargs.update({
-                            'page': page_num
-                        })
-                        urls.append(reverse(match.view_name, args=match.args, kwargs=kwargs))
+        for page in self.items():
+            if getattr(self, 'i18n', False):
+                current_lang_code = translation.get_language()
+                for lang_code, lang_name in settings.LANGUAGES:
+                    translation.activate(lang_code)
+                    urls += self._urls(page)
+                translation.activate(current_lang_code)
+            else:
+                urls += self._urls(page)
 
         urls = list(set(urls))
         urls.sort()
