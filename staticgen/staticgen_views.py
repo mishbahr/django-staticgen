@@ -13,7 +13,7 @@ from django.utils.translation import ugettext_lazy as _
 from .conf import settings
 from .exceptions import StaticgenError
 from .helpers import get_static_site_domain
-from .status import HTTP_200_OK
+from .status import is_success
 
 logger = logging.getLogger('staticgen')
 
@@ -44,7 +44,7 @@ class StaticgenView(object):
 
     def _get_paginator(self, url):
         response = self.client.get(url)
-        if not response.status_code == HTTP_200_OK:  # pragma: no cover
+        if not is_success(response.status_code):  # pragma: no cover
             message = _('Error retrieving: {url} - Code: {code}').format(
                 url=url, code=response.status_code)
             self.log_error(message)
