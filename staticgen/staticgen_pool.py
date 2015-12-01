@@ -36,19 +36,19 @@ class StaticgenPool(object):
                         '"staticgen.staticgen_views.StaticgenView", '
                         '{cls} does not').format(cls=cls)
             self.log_error(message)
-            return False
+            return False  # pragma: no cover
 
         name = '{module}.{name}'.format(module=cls.__module__, name=cls.__name__)
         if name in self.modules.keys():
             message = _('"{name}" a Staticgen view with this name '
                         'is already registered'.format(name=name))
             self.log_error(message)
-            return False
+            return False  # pragma: no cover
 
         self.modules[name] = cls()
 
     def autodiscover(self):
-        if self._discovered:
+        if self._discovered:  # pragma: no cover
             return
 
         for app in settings.INSTALLED_APPS:

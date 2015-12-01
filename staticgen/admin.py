@@ -49,10 +49,10 @@ class PageAdmin(admin.ModelAdmin):
         return queryset
 
     def has_delete_permission(self, request, obj=None):
-        return False
+        return False  # pragma: no cover
 
     def has_add_permission(self, request):
-        return True
+        return True  # pragma: no cover
 
     def get_urls(self):
         urls = super(PageAdmin, self).get_urls()
@@ -156,7 +156,7 @@ class PageAdmin(admin.ModelAdmin):
         if self.has_change_permission(request, None):
             redirect_url = reverse('admin:%s_%s_changelist' % (opts.app_label, opts.model_name),
                                    current_app=self.admin_site.name)
-        else:
+        else:  # pragma: no cover
             redirect_url = reverse('admin:index', current_app=self.admin_site.name)
 
         redirect_url = add_preserved_filters(

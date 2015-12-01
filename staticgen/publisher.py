@@ -24,7 +24,7 @@ try:
         from cStringIO import StringIO  # cStringIO is faster
     except ImportError:  # pragma: no cover
         from StringIO import StringIO
-except ImportError:  # python 3
+except ImportError:  # python 3  # pragma: no cover
     from io import StringIO
 
 try:
@@ -220,7 +220,9 @@ class StaticgenPublisher(object):
         has_changed = False
 
         response = self.get_page(page.path)
-        if not is_success(response.status_code) and not is_redirect(response.status_code):
+        if not is_success(response.status_code) \
+                and not is_redirect(response.status_code):  # pragma: no cover
+
             message = _('Error retrieving page: {path} - Code: {code}').format(
                 path=page.path, code=response.status_code)
 
