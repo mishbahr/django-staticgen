@@ -176,7 +176,7 @@ class StaticgenPublisher(object):
         redirect_url = urlparse(redirect_url)
         redirect_response = self.get_page(redirect_url.path)
 
-        if not is_success(redirect_response.status_code):
+        if not is_success(redirect_response.status_code):  # pragma: no cover
             message = _('Couldn\'t retrieve redirection page: {path} - Code: {code}').format(
                 path=redirect_url.path, code=redirect_response.status_code
             )
@@ -216,7 +216,7 @@ class StaticgenPublisher(object):
         temp_file.close()
         return page, has_changed
 
-    def upload_to_s3(self, page):
+    def _upload(self, page):
         has_changed = False
 
         response = self.get_page(page.path)
@@ -244,10 +244,19 @@ class StaticgenPublisher(object):
         if has_changed:
             self.updated_paths.append((page.path, output_path))
 
-        if not has_changed:
+        if not has_changed:  # pragma: no cover
             message = _('The content has not changed.')
             self.log_success(page, message)
 
+        return page
+
+    def upload_to_s3(self, page):
+        try:
+            page = self._upload(page)
+        except Exception as e:  # pragma: no cover
+            message = _('Error publishing page: {path} - Error: {error}').format(
+                path=page.path, error=force_text(e))
+            self.log_error(page, message)
         return page
 
     def publish(self, pending=False, changed=False, obj=None, sync=False):
