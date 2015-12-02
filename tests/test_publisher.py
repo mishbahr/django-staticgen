@@ -193,9 +193,9 @@ class TestStaticgenPublisher(TestCase):
         # Sync will mark page1/page2/page3 as deleted.
         Page.objects.sync()
 
-        # actual test - publish_deletion should delete page1/page2/page3
+        # actual test - delete_removed should delete page1/page2/page3
         # from the bucket and the database
-        self.publisher.publish_deletion()
+        self.publisher.delete_removed()
 
         # test database record for page has been deleted.
         self.assertEqual(Page.objects.deleted().count(), 0)

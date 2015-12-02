@@ -121,7 +121,7 @@ class StaticgenPublisher(object):
             page_id=page.pk,
         )
 
-    def publish_deletion(self):
+    def delete_removed(self):
         bucket = self.get_bucket()
         deleted_pages = self.model._default_manager.deleted()
         to_delete = []
@@ -152,7 +152,7 @@ class StaticgenPublisher(object):
 
     def post_publish(self):
         # delete pages that have been marked for deletion
-        self.publish_deletion()
+        self.delete_removed()
 
         elapsed_time = time.time() - self.start_time
         message = _('Publishing completed successfully. {updated_count} page(s) was updated, '
