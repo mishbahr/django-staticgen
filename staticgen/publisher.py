@@ -8,7 +8,7 @@ import time
 from multiprocessing.pool import ThreadPool
 
 from django.test import Client
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.translation import ugettext_lazy as _
 
 from boto import connect_s3
@@ -198,7 +198,7 @@ class StaticgenPublisher(object):
 
     def handle_page_upload(self, page, response, key):
         has_changed = False
-        content = force_text(response.content)
+        content = force_str(response.content)
 
         temp_file = StringIO(content)
         local_md5, b64 = key.compute_md5(temp_file)
