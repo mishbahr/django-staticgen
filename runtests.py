@@ -36,8 +36,8 @@ try:
         PASSWORD_HASHERS=(
             'django.contrib.auth.hashers.SHA1PasswordHasher',
         ),
-        DEFAULT_FILE_STORAGE='staticgen.storage.S3DefaultStorage',
-        STATICFILES_STORAGE='staticgen.storage.S3StaticStorage',
+        DEFAULT_FILE_STORAGE='staticgen.staticgen_storages.S3DefaultStorage',
+        STATICFILES_STORAGE='staticgen.staticgen_storages.S3StaticStorage',
         AWS_S3_DEFAULTFILES_LOCATION='media',
         AWS_S3_STATICFILES_LOCATION='static',
         AWS_ACCESS_KEY_ID='AKIAIOSFODNN7EXAMPLE',
