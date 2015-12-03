@@ -40,6 +40,7 @@ setup(
     install_requires=[
         'django>=1.7',
         'django-appconf',
+        'django-storages-redux>=1.3',
         'six>=1.5.2',
         'boto>=2.28',
         'celery>=3.1',
