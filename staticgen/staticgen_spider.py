@@ -61,8 +61,8 @@ class StaticgenSpider(object):
     def clean_url(self, url):
         url = url.lower().strip()
 
-        special_links = [url.startswith(prefix) for prefix in (
-                'mailto', 'tel', 'sms', 'skype', 'geo')]
+        special_links = [
+            url.startswith(prefix) for prefix in ('mailto', 'tel', 'sms', 'skype', 'geo')]
 
         if any([url.startswith(settings.MEDIA_URL),  # skip media files urls
                 url.startswith(settings.STATIC_URL),  # skip static files urls
