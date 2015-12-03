@@ -13,6 +13,10 @@ django-staticgen
     :target: https://pypi.python.org/pypi/django-staticgen/
     :alt: Downloads
 
+.. image:: https://img.shields.io/pypi/pyversions/django-staticgen.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/django-staticgen/
+    :alt: Python Versions
+
 .. image:: http://img.shields.io/pypi/l/django-staticgen.svg?style=flat-square
     :target: https://pypi.python.org/pypi/django-staticgen/
     :alt: License
