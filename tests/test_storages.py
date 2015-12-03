@@ -27,10 +27,10 @@ class TestStaticgenStorage(TestCase):
         storage.save(file_name, file_content)
 
         # confirm it was uploaded
-        temp_file = storage.open(file_name, 'r')
-        self.assertEqual(temp_file.read(), file_text)
+        self.assertTrue(storage.exists(file_name))
 
         # check folder
+        temp_file = storage.open(file_name, 'r')
         expected_path = '{folder}/{file_name}'.format(folder=folder, file_name=file_name)
         self.assertEqual(temp_file.key.name, expected_path)
 
