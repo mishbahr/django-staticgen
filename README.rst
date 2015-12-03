@@ -20,7 +20,11 @@ django-staticgen
 .. image:: http://img.shields.io/coveralls/mishbahr/django-staticgen.svg?style=flat-square
   :target: https://coveralls.io/r/mishbahr/django-staticgen?branch=master
 
-Simple static site generator for django. Inspired by django-bakery.
+Simple static site generator for django.
+
+This project requires ``celery>=3.1`` to be properly installed and configured. When installing the ``django-staticgen`` using pip, ``celery>=3.1`` will also be installed automatically.
+
+For more information on using Celery with Django http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
 
 **WORK IN PROGRESS // NOT PRODUCTION READY.**
 
@@ -31,10 +35,6 @@ Demo
 Live Site: https://staticgen-demo.herokuapp.com
 
 Static Site: http://staticgen-demo.s3-website-us-west-2.amazonaws.com
-
-Admin: https://staticgen-demo.herokuapp.com/manage
-
-Message me on Twitter `@mishbahrazzaque <https://twitter.com/mishbahrazzaque>`_ for login details.
 
 Source code for demo: https://github.com/mishbahr/staticgen-demo
 
@@ -58,6 +58,3 @@ Quickstart
 
     python manage.py migrate
 
-4. ``django-staticgen`` requires celery>=3.1 to be installed and configured correctly. For more information on using Celery with Django::
-
-    http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
