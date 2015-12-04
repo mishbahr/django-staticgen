@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 
 from .conf import settings
 from .exceptions import StaticgenError
+from .helpers import get_static_site_domain
 from .status import is_redirect, is_success
 
 
@@ -49,7 +50,7 @@ class StaticgenCrawler(object):
         current_site = Site.objects.get_current()
         self.base_domain = current_site.domain
         self.url_registry = UrlRegistry()
-        self.client = Client()
+        self.client = Client(SERVER_NAME=get_static_site_domain())
 
     def log_error(self, message):
         logger.error(message)
