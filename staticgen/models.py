@@ -13,6 +13,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from .conf import settings
 from .staticgen_pool import staticgen_pool
+from .staticgen_crawler import StaticgenCrawler
 
 try:
     from urllib.parse import urlparse
@@ -83,6 +84,10 @@ class PageManager(models.Manager):
         start_time = time.time()
 
         urls = []
+
+        crawler = StaticgenCrawler()
+        urls.extend(crawler.get_urls())
+
         urls.extend(staticgen_pool.get_urls())
         urls = list(set(urls))
         urls.sort()
