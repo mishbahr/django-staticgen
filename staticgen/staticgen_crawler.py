@@ -43,14 +43,12 @@ class UrlRegistry(object):
             yield url
 
 
-url_registry = UrlRegistry()
-
-
-class StaticgenSpider(object):
+class StaticgenCrawler(object):
 
     def __init__(self):
         current_site = Site.objects.get_current()
         self.base_domain = current_site.domain
+        self.url_registry = UrlRegistry()
         self.client = Client()
 
     def log_error(self, message):
@@ -130,9 +128,9 @@ class StaticgenSpider(object):
         sitemap_links = self.get_sitemap_links()
         for url in sitemap_links:
             parsed_url = urlparse(url)
-            url_registry.enqueue(parsed_url.path)
+            self.url_registry.enqueue(parsed_url.path)
 
-        for url in url_registry:
+        for url in self.url_registry:
             urls.append(url)
 
             response = self.client.get(url)
@@ -140,7 +138,7 @@ class StaticgenSpider(object):
                 cleaned_url = self.clean_url(link)
                 if cleaned_url:
                     parsed_url = urlparse(cleaned_url)
-                    url_registry.enqueue(parsed_url.path)
+                    self.url_registry.enqueue(parsed_url.path)
 
         urls = list(set(urls))
         urls.sort()
