@@ -2,6 +2,7 @@
 
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.test import TestCase
 
 from mock import Mock
@@ -17,5 +18,8 @@ class TestStaticgenContextProcessors(TestCase):
 
         context = staticgen_publisher(request)
 
-        self.assertTrue('is_publishing' in context.keys())
-        self.assertTrue(context['is_publishing'])
+        self.assertTrue('STATICGEN_IS_PUBLISHING' in context.keys())
+        self.assertTrue(context['STATICGEN_IS_PUBLISHING'])
+
+        self.assertTrue('STATICGEN_BASE_URL' in context.keys())
+        self.assertTrue(context['STATICGEN_BASE_URL'], settings.STATICGEN_STATIC_SITE_DOMAIN)
