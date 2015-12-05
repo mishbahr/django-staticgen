@@ -44,6 +44,8 @@ Quickstart
 
     pip install django-staticgen
 
+    pip install -e git+https://github.com/mishbahr/django-staticgen.git@master#egg=django-staticgen
+
 2. Add ``staticgen`` to ``INSTALLED_APPS``::
 
     INSTALLED_APPS = (
