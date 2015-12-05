@@ -24,14 +24,9 @@ django-staticgen
 .. image:: http://img.shields.io/coveralls/mishbahr/django-staticgen.svg?style=flat-square
   :target: https://coveralls.io/r/mishbahr/django-staticgen?branch=master
 
-Simple static site generator for django.
-
-This project requires ``celery>=3.1`` to be properly installed and configured. When installing the ``django-staticgen`` using pip, ``celery>=3.1`` will also be installed automatically.
-
-For more information on using Celery with Django http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
+Push your django powered site to Amazon S3.
 
 **WORK IN PROGRESS // NOT PRODUCTION READY.**
-
 
 Demo
 ----
@@ -41,7 +36,6 @@ Live Site: https://staticgen-demo.herokuapp.com
 Static Site: http://staticgen-demo.s3-website-us-west-2.amazonaws.com
 
 Source code for demo: https://github.com/mishbahr/staticgen-demo
-
 
 Quickstart
 ----------
@@ -62,3 +56,31 @@ Quickstart
 
     python manage.py migrate
 
+4. To publish your site on Amazon S3, you'll need to setup an AWS S3 bucket to host the website.
+Add the following details to your projects ``settings.py`` module::
+
+    AWS_ACCESS_KEY_ID = 'AKIAIOSFODNN7EXAMPLE'
+    AWS_SECRET_ACCESS_KEY = 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
+    AWS_STORAGE_BUCKET_NAME = 'staticgen-bucket'
+
+5. Finally, publishing your site to S3 is as simple as::
+
+     python manage.py staticgen_publish
+
+
+Celery
+-------
+
+This project requires ``celery>=3.1`` to be properly installed and configured.
+
+For more information on using Celery with Django.
+
+See: http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
+
+
+ToDo
+----
+
+* Cache Control
+* Gzip Compression
+* CloudFront distribution/invalidation
