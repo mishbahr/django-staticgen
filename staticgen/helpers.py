@@ -16,4 +16,4 @@ def get_static_site_domain():
         )
         bucket = connection.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
         static_site_domain = bucket.get_website_endpoint()
-    return static_site_domain
+    return static_site_domain.rstrip('/')
