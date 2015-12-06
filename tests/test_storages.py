@@ -37,7 +37,7 @@ class TestStaticgenStorage(TestCase):
         temp_file.close()
 
     def test_s3_defaultfiles_storage(self):
-        self._upload(StaticgenDefaultFilesStorage(), settings.AWS_S3_DEFAULTFILES_LOCATION)
+        self._upload(StaticgenDefaultFilesStorage(), settings.AWS_S3_DEFAULT_FILES_LOCATION)
 
     def test_s3_staticfiles_storage(self):
-        self._upload(StaticgenStaticFilesStorage(), settings.AWS_S3_STATICFILES_LOCATION)
+        self._upload(StaticgenStaticFilesStorage(), settings.AWS_S3_STATIC_FILES_LOCATION)

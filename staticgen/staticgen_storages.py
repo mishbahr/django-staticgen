@@ -8,8 +8,8 @@ from storages.backends.s3boto import S3BotoStorage
 
 
 class StaticgenStaticFilesStorage(S3BotoStorage):
-    location = settings.AWS_S3_STATICFILES_LOCATION
+    location = settings.AWS_S3_STATIC_FILES_LOCATION
 
 
 class StaticgenDefaultFilesStorage(S3BotoStorage):
-    location = settings.AWS_S3_DEFAULTFILES_LOCATION
+    location = settings.AWS_S3_DEFAULT_FILES_LOCATION
