@@ -80,7 +80,7 @@ For more information on using Celery with Django.
 See: http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
 
 
-ToDo
+Todo
 ----
 
 * Cache Control
