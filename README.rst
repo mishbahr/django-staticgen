@@ -40,11 +40,9 @@ Source code for demo: https://github.com/mishbahr/staticgen-demo
 Quickstart
 ----------
 
-1. Install ``django-staticgen``::
+1. Install ``django-staticgen`` from PyPi::
 
     pip install django-staticgen
-
-    pip install -e git+https://github.com/mishbahr/django-staticgen.git@master#egg=django-staticgen
 
 2. Add ``staticgen`` to ``INSTALLED_APPS``::
 
@@ -58,8 +56,7 @@ Quickstart
 
     python manage.py migrate
 
-4. To publish your site on Amazon S3, you'll need to setup an AWS S3 bucket to host the website.
-Add the following details to your projects ``settings.py`` module::
+4. To publish your site on Amazon S3, you'll need to setup an AWS S3 bucket to host the website. Add the following details to your projects ``settings.py`` module::
 
     AWS_ACCESS_KEY_ID = 'AKIAIOSFODNN7EXAMPLE'
     AWS_SECRET_ACCESS_KEY = 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
