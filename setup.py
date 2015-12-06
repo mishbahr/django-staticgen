@@ -28,7 +28,7 @@ long_description = open('README.rst').read()
 setup(
     name='django-staticgen',
     version=version,
-    description="""Simple static site generator for django.""",
+    description="""Push your django powered site to Amazon S3.""",
     long_description=long_description,
     author='Mishbah Razzaque',
     author_email='mishbahx@gmail.com',
