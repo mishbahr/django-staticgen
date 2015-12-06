@@ -31,11 +31,11 @@ Push your django powered site to Amazon S3.
 Demo
 ----
 
-Live Site: https://staticgen-demo.herokuapp.com
+Live Site: http://staticgen-demo.herokuapp.com
 
 Static Site: http://staticgen-demo.s3-website-us-west-2.amazonaws.com
 
-Source code for demo: https://github.com/mishbahr/staticgen-demo
+Source code for demo: http://github.com/mishbahr/staticgen-demo
 
 Quickstart
 ----------
