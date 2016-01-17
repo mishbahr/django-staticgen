@@ -14,7 +14,11 @@ def staticgen_publisher(request):
     context['STATICGEN_IS_PUBLISHING'] = is_publishing
 
     current_site = Site.objects.get_current()
-    context['STATICGEN_BASE_URL'] = get_static_site_domain() \
-        if is_publishing else current_site.domain
+
+    base_url = current_site.domain
+    if is_publishing:
+        base_url = get_static_site_domain()
+
+    context['STATICGEN_BASE_URL'] = base_url
 
     return context
