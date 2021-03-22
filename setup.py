@@ -45,7 +45,7 @@ setup(
         'boto>=2.28',
         'celery>=3.1',
         'beautifulsoup4>=4.4.0',
-        'lxml==3.5.0',
+        'lxml==4.6.3',
     ],
     license='BSD',
     zip_safe=False,
